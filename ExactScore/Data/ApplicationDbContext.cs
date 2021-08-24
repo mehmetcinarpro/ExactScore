@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using ExactScore.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ExactScore.Data
 {
@@ -12,5 +10,12 @@ namespace ExactScore.Data
             : base(options)
         {
         }
+
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<League> Leagues { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<Round> Rounds { get; set; }
+        public DbSet<Fixture> Fixtures { get; set; }
+        public DbSet<Prediction> Predictions { get; set; }
     }
 }
