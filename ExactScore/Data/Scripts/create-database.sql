@@ -47,14 +47,14 @@
 --INSERT into public."Teams"("Name") VALUES ('Galatasaray');
 --INSERT into public."Teams"("Name") VALUES ('Trabzonspor');
 --INSERT into public."Teams"("Name") VALUES ('Altay');
---INSERT into public."Teams"("Name") VALUES ('Fatih Karagümrük');
+--INSERT into public."Teams"("Name") VALUES ('Fatih Karagümrük'); --5
 --INSERT into public."Teams"("Name") VALUES ('A. Alanyaspor');
 --INSERT into public."Teams"("Name") VALUES ('Fenerbahçe');
 --INSERT into public."Teams"("Name") VALUES ('Konyaspor');
 --INSERT into public."Teams"("Name") VALUES ('Antalyaspor');
 --INSERT into public."Teams"("Name") VALUES ('Göztepe');
 --INSERT into public."Teams"("Name") VALUES ('Hatayspor');
---INSERT into public."Teams"("Name") VALUES ('Kasımpaşa');
+--INSERT into public."Teams"("Name") VALUES ('Kasımpaşa'); --12
 --INSERT into public."Teams"("Name") VALUES ('Adana Demirspor');
 --INSERT into public."Teams"("Name") VALUES ('Kayserispor');
 --INSERT into public."Teams"("Name") VALUES ('Gaziantep FK');
@@ -72,7 +72,13 @@
 --INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-21', 15, 1, 0, 0, 2);
 --INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-22', 7, 9, 2, 0, 2);
 --INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-23', 3, 17, 2, 1, 2);
---INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-23', 2, 11, NULL, NULL, 2);
+--INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-23', 2, 11, 2, 1, 2);
+
+
+--INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-28', 1, 5, NULL, NULL, 3);
+--INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-29', 12, 2, NULL, NULL, 3);
+--INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-29', 4, 7, NULL, NULL, 3);
+--INSERT into public."Fixtures"("Date", "HomeTeamId", "AwayTeamId", "HomeGoal", "AwayGoal", "RoundId") VALUES ('2021-08-29', 18, 3, NULL, NULL, 3);
 
 --INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (1, 'melo', 2, 0, 1);
 --INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (2, 'melo', 0, 2, 1);
