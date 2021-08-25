@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ExactScore.Data;
+using ExactScore.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ExactScore.Data;
-using ExactScore.Data.Entities;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ExactScore.Controllers
 {
@@ -50,9 +48,9 @@ namespace ExactScore.Controllers
         // GET: Fixtures/Create
         public IActionResult Create()
         {
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id");
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id");
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Id");
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name");
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name");
+            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name");
             return View();
         }
 
@@ -69,9 +67,9 @@ namespace ExactScore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id", fixture.AwayTeamId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id", fixture.HomeTeamId);
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Id", fixture.RoundId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.AwayTeamId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.HomeTeamId);
+            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name", fixture.RoundId);
             return View(fixture);
         }
 
@@ -88,9 +86,9 @@ namespace ExactScore.Controllers
             {
                 return NotFound();
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id", fixture.AwayTeamId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id", fixture.HomeTeamId);
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Id", fixture.RoundId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.AwayTeamId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.HomeTeamId);
+            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name", fixture.RoundId);
             return View(fixture);
         }
 
@@ -126,9 +124,9 @@ namespace ExactScore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id", fixture.AwayTeamId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id", fixture.HomeTeamId);
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Id", fixture.RoundId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.AwayTeamId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.HomeTeamId);
+            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name", fixture.RoundId);
             return View(fixture);
         }
 
