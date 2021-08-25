@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExactScore.Data.Entities
 {
@@ -14,5 +15,8 @@ namespace ExactScore.Data.Entities
         public int? AwayGoal { get; set; }
         public int RoundId { get; set; }
         public Round Round { get; set; }
+
+        [NotMapped]
+        public string Name => $"{HomeTeam.Name} - {AwayTeam.Name}";
     }
 }
