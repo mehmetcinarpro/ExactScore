@@ -24,27 +24,6 @@ namespace ExactScore.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Fixtures/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var fixture = await _context.Fixtures
-                .Include(f => f.AwayTeam)
-                .Include(f => f.HomeTeam)
-                .Include(f => f.Round)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (fixture == null)
-            {
-                return NotFound();
-            }
-
-            return View(fixture);
-        }
-
         // GET: Fixtures/Create
         public IActionResult Create()
         {

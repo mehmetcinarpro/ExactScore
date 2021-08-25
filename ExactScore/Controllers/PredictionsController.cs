@@ -28,28 +28,6 @@ namespace ExactScore.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Predictions/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var prediction = await _context.Predictions
-                .Include(p => p.Fixture)
-                .Include(p => p.Fixture.HomeTeam)
-                .Include(p => p.Fixture.AwayTeam)
-                .Include(p => p.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (prediction == null)
-            {
-                return NotFound();
-            }
-
-            return View(prediction);
-        }
-
         // GET: Predictions/Create
         public IActionResult Create()
         {
