@@ -27,9 +27,9 @@ namespace ExactScore.Controllers
         // GET: Fixtures/Create
         public IActionResult Create()
         {
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name");
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name");
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name");
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name");
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name");
+            ViewData["RoundId"] = new SelectList(_context.Rounds.Where(r => !r.Closed), "Id", "Name");
             return View();
         }
 
@@ -38,7 +38,7 @@ namespace ExactScore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,HomeGoal,AwayGoal,RoundId")] Fixture fixture)
+        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,RoundId")] Fixture fixture)
         {
             if (ModelState.IsValid)
             {
@@ -46,9 +46,9 @@ namespace ExactScore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.AwayTeamId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.HomeTeamId);
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name", fixture.RoundId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name", fixture.AwayTeamId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name", fixture.HomeTeamId);
+            ViewData["RoundId"] = new SelectList(_context.Rounds.Where(r => !r.Closed), "Id", "Name", fixture.RoundId);
             return View(fixture);
         }
 
@@ -65,9 +65,9 @@ namespace ExactScore.Controllers
             {
                 return NotFound();
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.AwayTeamId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.HomeTeamId);
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name", fixture.RoundId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name", fixture.AwayTeamId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name", fixture.HomeTeamId);
+            ViewData["RoundId"] = new SelectList(_context.Rounds.Where(r => !r.Closed), "Id", "Name", fixture.RoundId);
             return View(fixture);
         }
 
@@ -103,9 +103,9 @@ namespace ExactScore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.AwayTeamId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", fixture.HomeTeamId);
-            ViewData["RoundId"] = new SelectList(_context.Rounds, "Id", "Name", fixture.RoundId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name", fixture.AwayTeamId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams.OrderBy(t => t.Name), "Id", "Name", fixture.HomeTeamId);
+            ViewData["RoundId"] = new SelectList(_context.Rounds.Where(r => !r.Closed), "Id", "Name", fixture.RoundId);
             return View(fixture);
         }
 
