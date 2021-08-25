@@ -1,4 +1,6 @@
-﻿namespace ExactScore.Data.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace ExactScore.Data.Entities
 {
     public class Prediction
     {
@@ -9,5 +11,7 @@
         public int HomeGoal { get; set; }
         public int AwayGoal { get; set; }
         public int? Point { get; set; }
+        public string IdentityUserId { get; set; }
+        public IdentityUser IdentityUser { get; set; }
     }
 }

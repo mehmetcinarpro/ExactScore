@@ -34,32 +34,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeTeam.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AwayTeam.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeGoal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AwayGoal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Round.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Date.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeTeam.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwayTeam.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeGoal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwayGoal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Round.OrderNumber)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
