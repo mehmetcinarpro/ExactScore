@@ -1,22 +1,32 @@
-﻿using ExactScore.Models;
+﻿using ExactScore.Data;
+using ExactScore.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ExactScore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var applicationDbContext = _context.Fixtures
+                .Include(p => p.HomeTeam)
+                .Include(p => p.AwayTeam)
+                .Include(p => p.Round)
+                .Where(p => !p.Round.Closed)
+                .OrderBy(p => p.Round.OrderNumber).ThenBy(p => p.Date)
+                .Take(4);
+            return View(await applicationDbContext.ToListAsync());
         }
 
 
