@@ -100,18 +100,18 @@
 --INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (3, 'meto', 0, 2, 1);
 --INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (4, 'meto', 0, 3, 1);
 
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'memo', 1, 1, 1);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'meto', 0, 3, 0);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'muske', 0, 3, 0);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'melo', 0, 5, 0);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (5, 'memo', 1, 1, 1);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (5, 'meto', 0, 3, 0);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (5, 'muske', 0, 3, 0);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (5, 'melo', 0, 5, 0);
 
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'memo', 2, 0, 3);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'meto', 1, 1, 0);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'muske', 2, 2, 0);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'melo', 1, 0, 1);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'memo', 2, 0, 3);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'meto', 1, 1, 0);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'muske', 2, 2, 0);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (6, 'melo', 1, 0, 1);
 
 
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (8, 'memo', 2, 1, 3);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (8, 'meto', 2, 1, 3);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (8, 'muske', 3, 1, 1);
---INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (8, 'melo', 3, 1, 1);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'memo', 2, 1, 3);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'meto', 2, 1, 3);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'muske', 3, 1, 1);
+--INSERT into public."Predictions"("FixtureId", "UserName", "HomeGoal", "AwayGoal", "Point") VALUES (7, 'melo', 3, 1, 1);

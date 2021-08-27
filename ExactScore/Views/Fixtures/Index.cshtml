@@ -4,59 +4,61 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Fixtures</h1>
+<div class="text-center">
+    <h1>Fixtures</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table table-sm">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTeam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayTeam)
-            </th>
-            <th>
-                Score
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Round)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-sm">
+        <thead>
             <tr>
-                <td>
-                    @item.Date.ToString("yyyy-MM-dd")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTeam.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayTeam.Name)
-                </td>
-                <td>
-                    @item.HomeGoal - @item.AwayGoal
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Round.OrderNumber)
-                </td>
-                <td>
-                    @if (!item.Round.Closed)
-                    {
-
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    }
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HomeTeam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AwayTeam)
+                </th>
+                <th>
+                    Score
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Round)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Date.ToString("yyyy-MM-dd HH:mm")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomeTeam.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AwayTeam.Name)
+                    </td>
+                    <td>
+                        @item.HomeGoal - @item.AwayGoal
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Round.OrderNumber)
+                    </td>
+                    <td>
+                        @if (!item.Round.Closed)
+                        {
+
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
