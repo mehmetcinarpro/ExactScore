@@ -5,13 +5,7 @@
     var user = await UserManager.GetUserAsync(User);
 }
 
-
-<form asp-action="UpdateStandings">
-    <input type="submit" value="Update Standings" class="btn btn-outline-primary" />
-</form>
-
 <div class="text-center">
-
     @*<h1>Don't forget @Model.Fixtures?.First().Round.Name!</h1>
         <table class="table">
             <tbody>
@@ -86,5 +80,10 @@
             }
         </tbody>
     </table>
-
+    @if (user?.UserName == "memo")
+    {
+        <form asp-action="UpdateStandings">
+            <input type="submit" value="Update Standings" class="btn btn-outline-primary" />
+        </form>
+    }
 </div>
