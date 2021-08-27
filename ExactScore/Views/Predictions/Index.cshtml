@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-sm">
     <thead>
         <tr>
             <th>
@@ -44,7 +44,10 @@
                     @Html.DisplayFor(modelItem => item.IdentityUser.Email)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    @if (!item.Fixture.Round.Closed)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    }
                 </td>
             </tr>
         }

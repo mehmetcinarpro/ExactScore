@@ -22,6 +22,7 @@ namespace ExactScore.Controllers
         {
             var applicationDbContext = _context.Predictions
                 .Include(p => p.Fixture)
+                .Include(p => p.Fixture.Round)
                 .Include(p => p.IdentityUser)
                 .Include(p => p.Fixture.HomeTeam)
                 .Include(p => p.Fixture.AwayTeam);
