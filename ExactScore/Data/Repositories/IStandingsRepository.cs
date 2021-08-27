@@ -7,5 +7,6 @@ namespace ExactScore.Data.Repositories
     public interface IStandingsRepository
     {
         Task<IEnumerable<StandingsItemViewModel>> GetStandings();
+        Task RefreshStandings();
     }
 }
