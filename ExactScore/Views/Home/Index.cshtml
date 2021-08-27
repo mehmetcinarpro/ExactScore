@@ -31,11 +31,33 @@
 
 
     <h1>Standings</h1>
-    <table class="table">
+    <table class="table table-responsive-sm">
+        <thead>
+            <tr>
+                <th>
+                    User
+                </th>
+                <th>
+                    Played
+                </th>
+                <th>
+                    ExactScore
+                </th>
+                <th>
+                    Win
+                </th>
+                <th>
+                    Lost
+                </th>
+                <th>
+                    Points
+                </th>
+            </tr>
+        </thead>
         <tbody>
             @foreach (var item in Model.Standings)
             {
-                <tr class=@(SignInManager.IsSignedIn(User) && user?.Email == item.UserName ? "current-user" : "")>
+                <tr class=@(SignInManager.IsSignedIn(User) && user?.UserName == item.UserName ? "current-user" : "")>
                     <td>
                         @item.UserName
                     </td>

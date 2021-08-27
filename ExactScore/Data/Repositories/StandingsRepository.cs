@@ -21,7 +21,7 @@ namespace ExactScore.Data.Repositories
                 .Include(p => p.IdentityUser)
                 .Where(p => p.Point != null)
                 .ToListAsync())
-                .GroupBy(g => g.IdentityUser.Email)
+                .GroupBy(g => g.IdentityUser.UserName)
                 .ToDictionary(d => d.Key, g => new StandingsItemViewModel
                 {
                     UserName = g.Key,
