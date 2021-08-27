@@ -3,6 +3,7 @@ using ExactScore.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +44,8 @@ namespace ExactScore
 
             services.AddScoped<IStandingsRepository, StandingsRepository>();
             services.AddScoped<IPredictionRepository, PredictionRepository>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+                options.Filters.Add(new AuthorizeFilter()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

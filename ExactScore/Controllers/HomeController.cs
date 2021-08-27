@@ -1,6 +1,7 @@
 ﻿using ExactScore.Data;
 using ExactScore.Data.Repositories;
 using ExactScore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ExactScore.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
