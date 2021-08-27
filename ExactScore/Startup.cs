@@ -1,4 +1,5 @@
 using ExactScore.Data;
+using ExactScore.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -39,6 +40,8 @@ namespace ExactScore
                     options.Password.RequireLowercase = false;
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IStandingsRepository, StandingsRepository>();
             services.AddControllersWithViews();
         }
 
