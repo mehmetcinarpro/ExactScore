@@ -6,28 +6,25 @@
 }
 
 <div class="text-center">
-    @*<h1>Don't forget @Model.Fixtures?.First().Round.Name!</h1>
-        <table class="table">
-            <tbody>
-                @foreach (var item in Model.Fixtures)
-                {
-                    <tr>
-                        <td>
-                            @item.Date.ToString("yyyy-MM-dd")
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HomeTeam.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AwayTeam.Name)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Give score</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
+    <h1>Don't forget!</h1>
+    <table class="table">
+        <tbody>
+            @foreach (var item in Model.MissingPredictions)
+            {
+                <tr>
+                    <td>
+                        @item.Date.ToString("yyyy-MM-dd HH:mm")
+                    </td>
+                    <td>
+                        @item.HomeTeam - @item.AwayTeam
+                    </td>
+                    <td>
+                        <a asp-controller="Fixtures" asp-action="Prediction" asp-route-id="@item.FixtureId">Give score</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 
     <h1>Standings</h1>

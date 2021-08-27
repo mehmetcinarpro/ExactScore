@@ -42,6 +42,7 @@ namespace ExactScore
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IStandingsRepository, StandingsRepository>();
+            services.AddScoped<IPredictionRepository, PredictionRepository>();
             services.AddControllersWithViews();
         }
 

@@ -2,9 +2,8 @@
 using ExactScore.Data.Repositories;
 using ExactScore.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ExactScore.Controllers
@@ -13,26 +12,24 @@ namespace ExactScore.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IStandingsRepository _standingsRepository;
+        private readonly IPredictionRepository _predictionRepository;
 
         public HomeController(ApplicationDbContext context,
-            IStandingsRepository standingsRepository)
+            IStandingsRepository standingsRepository,
+            IPredictionRepository predictionRepository
+            )
         {
             _context = context;
             _standingsRepository = standingsRepository;
+            _predictionRepository = predictionRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            var fixtures = await _context.Fixtures
-                .Include(p => p.HomeTeam)
-                .Include(p => p.AwayTeam)
-                .Include(p => p.Round)
-                .Where(p => !p.Round.Closed)
-                .OrderBy(p => p.Round.OrderNumber).ThenBy(p => p.Date)
-                .Take(4).ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View(new HomeViewModel
             {
-                Fixtures = fixtures,
+                MissingPredictions = await _predictionRepository.GetMissingPredictions(userId),
                 Standings = await _standingsRepository.GetStandings()
             });
         }

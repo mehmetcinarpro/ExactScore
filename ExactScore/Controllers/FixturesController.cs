@@ -1,5 +1,6 @@
 ﻿using ExactScore.Data;
 using ExactScore.Data.Entities;
+using ExactScore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -145,5 +146,25 @@ namespace ExactScore.Controllers
         {
             return _context.Fixtures.Any(e => e.Id == id);
         }
+
+
+        // GET: Fixtures/Prediction/5
+        public async Task<IActionResult> Prediction(int id)
+        {
+            var fixture = await _context.Fixtures.Include(f => f.HomeTeam).Include(f => f.AwayTeam).SingleOrDefaultAsync(f => f.Id == id);
+            if (fixture == null)
+            {
+                return NotFound();
+            }
+
+            return View(new PredictionViewModel
+            {
+                FixtureId = fixture.Id,
+                HomeTeam = fixture.HomeTeam.Name,
+                AwayTeam = fixture.AwayTeam.Name,
+                Date = fixture.Date
+            });
+        }
+
     }
 }

@@ -1,0 +1,52 @@
+﻿@model PredictionViewModel
+
+
+<h1>Prediction</h1>
+
+<h4>Fixture</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Prediction">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FixtureId" />
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Model.HomeTeam</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Model.AwayTeam</label>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="AwayTeamId" class="control-label"></label>
+                    <select asp-for="AwayTeamId" class="form-control" asp-items="ViewBag.AwayTeamId"></select>
+                    <span asp-validation-for="AwayTeamId" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="HomeGoal" class="control-label"></label>
+                <input asp-for="HomeGoal" class="form-control" type="number" />
+                <span asp-validation-for="HomeGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AwayGoal" class="control-label"></label>
+                <input asp-for="AwayGoal" class="form-control" type="number" />
+                <span asp-validation-for="AwayGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
