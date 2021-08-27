@@ -1,4 +1,9 @@
 ﻿@model HomeViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 
 <div class="text-center">
     @*<h1>Don't forget @Model.Fixtures?.First().Round.Name!</h1>
@@ -30,7 +35,7 @@
         <tbody>
             @foreach (var item in Model.Standings)
             {
-                <tr>
+                <tr class=@(SignInManager.IsSignedIn(User) && user?.Email == item.UserName ? "current-user" : "")>
                     <td>
                         @item.UserName
                     </td>
