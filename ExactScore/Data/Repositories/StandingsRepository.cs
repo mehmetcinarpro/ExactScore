@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ExactScore.Data.Repositories
 {
@@ -14,7 +15,13 @@ namespace ExactScore.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<StandingsItemViewModel> Standings => (_context.Predictions.Include(p => p.IdentityUser).Where(p => p.Point != null).AsEnumerable().GroupBy(g => g.IdentityUser.Email)
+        public async Task<IEnumerable<StandingsItemViewModel>> GetStandings()
+        {
+            return (await _context.Predictions
+                .Include(p => p.IdentityUser)
+                .Where(p => p.Point != null)
+                .ToListAsync())
+                .GroupBy(g => g.IdentityUser.Email)
                 .ToDictionary(d => d.Key, g => new StandingsItemViewModel
                 {
                     UserName = g.Key,
@@ -23,6 +30,8 @@ namespace ExactScore.Data.Repositories
                     Win = g.Count(p => (int)p.Point == 1),
                     Lost = g.Count(p => (int)p.Point == 0),
                     Point = g.Sum(p => (int)p.Point)
-                })).OrderByDescending(p => p.Value.Point).Select(p => p.Value).ToList();
+                })
+                .OrderByDescending(p => p.Value.Point).Select(p => p.Value);
+        }
     }
 }

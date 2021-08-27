@@ -33,7 +33,7 @@ namespace ExactScore.Controllers
             return View(new HomeViewModel
             {
                 Fixtures = fixtures,
-                Standings = _standingsRepository.Standings
+                Standings = await _standingsRepository.GetStandings()
             });
         }
 
