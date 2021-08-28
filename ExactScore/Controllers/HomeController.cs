@@ -32,6 +32,7 @@ namespace ExactScore.Controllers
             return View(new HomeViewModel
             {
                 MissingPredictions = await _predictionRepository.GetMissingPredictions(userId),
+                InProgressPredictions = await _predictionRepository.GetMissingPredictions(userId),
                 Standings = await _standingsRepository.GetStandings()
             });
         }

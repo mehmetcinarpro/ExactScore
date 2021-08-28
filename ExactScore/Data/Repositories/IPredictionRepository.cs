@@ -7,5 +7,6 @@ namespace ExactScore.Data.Repositories
     public interface IPredictionRepository
     {
         Task<IEnumerable<PredictionViewModel>> GetMissingPredictions(string userId);
+        Task<IEnumerable<PredictionViewModel>> GetInProgressPredictions(string userId);
     }
 }
