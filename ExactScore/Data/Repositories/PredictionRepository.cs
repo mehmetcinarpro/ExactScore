@@ -17,7 +17,7 @@ namespace ExactScore.Data.Repositories
 
         public async Task<IEnumerable<PredictionViewModel>> GetMissingPredictions(string userId)
         {
-            var fixures = await _context.Fixtures.Include(f => f.HomeTeam).Include(f => f.AwayTeam).ToListAsync();
+            var fixures = await _context.Fixtures.Include(f => f.HomeTeam).Include(f => f.AwayTeam).Where(f => f.Date > System.DateTime.Now.AddMinutes(10)).ToListAsync();
             var myPredictions = await _context.Predictions.Where(p => p.IdentityUserId == userId).ToListAsync();
             var missingPredictions = fixures.Except(myPredictions.Select(p => p.Fixture));
 

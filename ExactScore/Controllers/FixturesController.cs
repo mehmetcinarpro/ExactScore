@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ExactScore.Controllers
@@ -157,6 +158,7 @@ namespace ExactScore.Controllers
                 return NotFound();
             }
 
+            ViewData["Goals"] = new SelectList(Enumerable.Range(0, 9).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text");
             return View(new PredictionViewModel
             {
                 FixtureId = fixture.Id,
@@ -166,5 +168,25 @@ namespace ExactScore.Controllers
             });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Prediction([Bind("FixtureId,HomeGoal,AwayGoal")] PredictionViewModel prediction)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new Prediction
+                {
+                    IdentityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                    FixtureId = prediction.FixtureId,
+                    HomeGoal = prediction.HomeGoal,
+                    AwayGoal = prediction.AwayGoal
+                };
+                _context.Predictions.Add(entity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index), "Home");
+            }
+            ViewData["Goals"] = new SelectList(Enumerable.Range(0, 9).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text");
+            return View(prediction);
+        }
     }
 }
