@@ -18,7 +18,7 @@ namespace ExactScore.Data.Repositories
         public async Task<IEnumerable<PredictionViewModel>> GetInProgressPredictions(string userId)
         {
             var myPredictions = await _context.Predictions.Include(p => p.Fixture).Include(p => p.Fixture.HomeTeam).Include(p => p.Fixture.AwayTeam)
-                .Where(p => p.IdentityUserId == userId && p.Point == null).ToListAsync();
+                .Where(p => p.IdentityUserId == userId && p.Point == null && p.Fixture.Date < System.DateTime.Now).ToListAsync();
 
             return myPredictions.Select(p => new PredictionViewModel
             {
