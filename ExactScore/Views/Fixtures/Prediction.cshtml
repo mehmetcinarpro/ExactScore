@@ -12,7 +12,6 @@
                 <label class="control-label">@Model.HomeTeam</label>
                 <div class="form-group">
                     <select asp-for="HomeGoal" class="form-control" asp-items="ViewBag.Goals">
-                        <option disabled selected value=""></option>
                     </select>
                     <span asp-validation-for="HomeGoal" class="text-danger"></span>
                 </div>
@@ -21,16 +20,10 @@
                 <label class="control-label">@Model.AwayTeam</label>
                 <div class="form-group">
                     <select asp-for="AwayGoal" class="form-control" asp-items="ViewBag.Goals">
-                        <option disabled selected value=""></option>
                     </select>
                     <span asp-validation-for="AwayGoal" class="text-danger"></span>
                 </div>
             </div>
-            @*<div class="form-group">
-                    <label asp-for="HomeGoal" class="control-label"></label>
-                    <input asp-for="HomeGoal" class="form-control" type="number" />
-                    <span asp-validation-for="HomeGoal" class="text-danger"></span>
-                </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

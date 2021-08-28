@@ -18,13 +18,15 @@ namespace ExactScore.Data.Repositories
         public async Task<IEnumerable<PredictionViewModel>> GetInProgressPredictions(string userId)
         {
             var myPredictions = await _context.Predictions.Include(p => p.Fixture).Include(p => p.Fixture.HomeTeam).Include(p => p.Fixture.AwayTeam)
-                .Where(p => p.IdentityUserId == userId && p.Point == null && p.Fixture.Date < System.DateTime.Now).ToListAsync();
+                .Where(p => p.IdentityUserId == userId && p.Point == null).ToListAsync();
 
             return myPredictions.Select(p => new PredictionViewModel
             {
-                FixtureId = p.Id,
+                FixtureId = p.Fixture.Id,
                 HomeTeam = p.Fixture.HomeTeam.Name,
                 AwayTeam = p.Fixture.AwayTeam.Name,
+                HomeGoal = p.HomeGoal,
+                AwayGoal = p.AwayGoal,
                 Date = p.Fixture.Date
             });
         }

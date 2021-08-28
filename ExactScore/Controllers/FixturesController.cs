@@ -158,7 +158,25 @@ namespace ExactScore.Controllers
                 return NotFound();
             }
 
-            ViewData["Goals"] = new SelectList(Enumerable.Range(0, 9).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var prediction = await _context.Predictions.Include(f => f.Fixture).Include(f => f.Fixture.HomeTeam).Include(f => f.Fixture.AwayTeam)
+                .SingleOrDefaultAsync(f => f.FixtureId == id && f.IdentityUserId == userId);
+            // new prediction
+            ViewData["Goals"] = new SelectList(Enumerable.Range(0, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text");
+            if (prediction != null)
+            {
+                return View(new PredictionViewModel
+                {
+                    FixtureId = prediction.Fixture.Id,
+                    HomeTeam = prediction.Fixture.HomeTeam.Name,
+                    AwayTeam = prediction.Fixture.AwayTeam.Name,
+                    HomeGoal = prediction.HomeGoal,
+                    AwayGoal = prediction.AwayGoal,
+                    Date = prediction.Fixture.Date
+                });
+            }
+
+            // update prediction
             return View(new PredictionViewModel
             {
                 FixtureId = fixture.Id,
@@ -166,6 +184,8 @@ namespace ExactScore.Controllers
                 AwayTeam = fixture.AwayTeam.Name,
                 Date = fixture.Date
             });
+
+
         }
 
         [HttpPost]
@@ -174,18 +194,32 @@ namespace ExactScore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = new Prediction
+
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var entity = await _context.Predictions.Include(f => f.Fixture).Include(f => f.Fixture.HomeTeam).Include(f => f.Fixture.AwayTeam)
+                    .SingleOrDefaultAsync(f => f.FixtureId == prediction.FixtureId && f.IdentityUserId == userId);
+
+                if (entity != null)
                 {
-                    IdentityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
-                    FixtureId = prediction.FixtureId,
-                    HomeGoal = prediction.HomeGoal,
-                    AwayGoal = prediction.AwayGoal
-                };
-                _context.Predictions.Add(entity);
+                    entity.HomeGoal = prediction.HomeGoal.Value;
+                    entity.AwayGoal = prediction.AwayGoal.Value;
+                }
+                else
+                {
+                    var newEntity = new Prediction
+                    {
+                        IdentityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                        FixtureId = prediction.FixtureId,
+                        HomeGoal = prediction.HomeGoal.Value,
+                        AwayGoal = prediction.AwayGoal.Value
+                    };
+                    _context.Predictions.Add(newEntity);
+                }
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), "Home");
             }
-            ViewData["Goals"] = new SelectList(Enumerable.Range(0, 9).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text");
+            ViewData["Goals"] = new SelectList(Enumerable.Range(0, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Value", "Text");
             return View(prediction);
         }
     }
