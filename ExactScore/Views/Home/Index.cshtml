@@ -16,7 +16,7 @@
                         @item.Date.ToString("yyyy-MM-dd HH:mm")
                     </td>
                     <td>
-                        @item.HomeTeam - @item.AwayTeam
+                        @item.HomeTeam.Name - @item.AwayTeam.Name
                     </td>
                     <td>
                         @if (item.Date > DateTime.Now.AddMinutes(5))
@@ -39,7 +39,7 @@
                         @item.Date.ToString("yyyy-MM-dd HH:mm")
                     </td>
                     <td>
-                        @item.HomeTeam - @item.AwayTeam
+                        @item.HomeTeam.Name - @item.AwayTeam.Name
                     </td>
                     <td>@item.HomeGoal - @item.AwayGoal</td>
                     <td>

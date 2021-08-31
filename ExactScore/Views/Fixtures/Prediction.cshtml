@@ -15,9 +15,9 @@
                 <div class="scoreboard__teams">
                     <div class="scoreboard__team">
                         <div class="scoreboard__badge">
-                            <img src="https://seeklogo.net/wp-content/uploads/2012/12/manchester-united-logo-vector-400x400.png" alt="Manchester United" />
+                            <img src="~/img/logo_@(Model.HomeTeam.ImageName).png" alt="@Model.HomeTeam.Name" />
                         </div>
-                        <span class="scoreboard__name">@Model.HomeTeam</span>
+                        <span class="scoreboard__name">@Model.HomeTeam.Name</span>
                         <span class="scoreboard__result-home">
                             <select asp-for="HomeGoal" class="form-control" asp-items="ViewBag.Goals">
                             </select>
@@ -25,9 +25,9 @@
                     </div>
                     <div class="scoreboard__team">
                         <div class="scoreboard__badge">
-                            <img src="https://seeklogo.net/wp-content/uploads/2011/08/liverpool-logo-vector.png" alt="Liverpool" />
+                            <img src="~/img/logo_@(Model.AwayTeam.ImageName).png" alt="@Model.AwayTeam.Name" />
                         </div>
-                        <span class="scoreboard__name">@Model.AwayTeam</span>
+                        <span class="scoreboard__name">@Model.AwayTeam.Name</span>
                         <span class="scoreboard__result-home">
                             <select asp-for="AwayGoal" class="form-control" asp-items="ViewBag.Goals">
                             </select>

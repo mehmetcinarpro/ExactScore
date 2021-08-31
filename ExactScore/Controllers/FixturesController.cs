@@ -168,8 +168,8 @@ namespace ExactScore.Controllers
                 return View(new PredictionViewModel
                 {
                     FixtureId = prediction.Fixture.Id,
-                    HomeTeam = prediction.Fixture.HomeTeam.Name,
-                    AwayTeam = prediction.Fixture.AwayTeam.Name,
+                    HomeTeam = prediction.Fixture.HomeTeam,
+                    AwayTeam = prediction.Fixture.AwayTeam,
                     HomeGoal = prediction.HomeGoal,
                     AwayGoal = prediction.AwayGoal,
                     Date = prediction.Fixture.Date
@@ -180,8 +180,8 @@ namespace ExactScore.Controllers
             return View(new PredictionViewModel
             {
                 FixtureId = fixture.Id,
-                HomeTeam = fixture.HomeTeam.Name,
-                AwayTeam = fixture.AwayTeam.Name,
+                HomeTeam = fixture.HomeTeam,
+                AwayTeam = fixture.AwayTeam,
                 Date = fixture.Date
             });
 

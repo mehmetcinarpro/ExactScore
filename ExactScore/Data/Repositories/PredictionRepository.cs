@@ -23,8 +23,8 @@ namespace ExactScore.Data.Repositories
             return myPredictions.Select(p => new PredictionViewModel
             {
                 FixtureId = p.Fixture.Id,
-                HomeTeam = p.Fixture.HomeTeam.Name,
-                AwayTeam = p.Fixture.AwayTeam.Name,
+                HomeTeam = p.Fixture.HomeTeam,
+                AwayTeam = p.Fixture.AwayTeam,
                 HomeGoal = p.HomeGoal,
                 AwayGoal = p.AwayGoal,
                 Date = p.Fixture.Date
@@ -40,8 +40,8 @@ namespace ExactScore.Data.Repositories
             return missingPredictions.Select(p => new PredictionViewModel
             {
                 FixtureId = p.Id,
-                HomeTeam = p.HomeTeam.Name,
-                AwayTeam = p.AwayTeam.Name,
+                HomeTeam = p.HomeTeam,
+                AwayTeam = p.AwayTeam,
                 Date = p.Date
             });
         }
