@@ -1,39 +1,54 @@
 ﻿@model PredictionViewModel
 
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Prediction">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FixtureId" />
-            <div class="form-group">
-                <label class="control-label">@Model.Date.ToString("yyyy-MM-dd HH:mm")</label>
-            </div>
-            <div class="form-group">
-                <label class="control-label">@Model.HomeTeam</label>
-                <div class="form-group">
-                    <select asp-for="HomeGoal" class="form-control" asp-items="ViewBag.Goals">
-                    </select>
-                    <span asp-validation-for="HomeGoal" class="text-danger"></span>
+    <form asp-action="Prediction" class="col-12">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="FixtureId" />
+
+        <div class="scoreboard">
+            <div class="scoreboard__container">
+                <div class="scoreboard__row">
+                    <span class="label">
+                        @Model.Date.ToString("yyyy-MM-dd HH:mm")
+                    </span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">@Model.AwayTeam</label>
-                <div class="form-group">
-                    <select asp-for="AwayGoal" class="form-control" asp-items="ViewBag.Goals">
-                    </select>
-                    <span asp-validation-for="AwayGoal" class="text-danger"></span>
+                <div class="scoreboard__teams">
+                    <div class="scoreboard__team">
+                        <div class="scoreboard__badge">
+                            <img src="https://seeklogo.net/wp-content/uploads/2012/12/manchester-united-logo-vector-400x400.png" alt="Manchester United" />
+                        </div>
+                        <span class="scoreboard__name">@Model.HomeTeam</span>
+                        <span class="scoreboard__result-home">
+                            <select asp-for="HomeGoal" class="form-control" asp-items="ViewBag.Goals">
+                            </select>
+                        </span>
+                    </div>
+                    <div class="scoreboard__team">
+                        <div class="scoreboard__badge">
+                            <img src="https://seeklogo.net/wp-content/uploads/2011/08/liverpool-logo-vector.png" alt="Liverpool" />
+                        </div>
+                        <span class="scoreboard__name">@Model.AwayTeam</span>
+                        <span class="scoreboard__result-home">
+                            <select asp-for="AwayGoal" class="form-control" asp-items="ViewBag.Goals">
+                            </select>
+                        </span>
+                    </div>
                 </div>
+
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
+    </form>
+    <div class="col-12 mt-4">
+        <div class="d-flex justify-content-center align-items-center">
+            <input type="submit" value="Save score" class="btn btn-primary col-4" />
+
+            <a asp-action="Index" asp-controller="Home" class="col-4 offset-1">Back to Home</a>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" asp-controller="Home">Back to Home</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

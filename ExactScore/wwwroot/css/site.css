@@ -6,6 +6,13 @@
     src: local(''), url('../fonts/roboto-v27-latin/roboto-v27-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
     url('../fonts/roboto-v27-latin/roboto-v27-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('../montserrat-v18-latin/montserrat-v18-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/montserrat-v18-latin/montserrat-v18-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 * {
     font-family: Roboto;
 }
@@ -86,3 +93,69 @@ body {
 tr.current-user {
     font-weight: bold;
 }
+
+
+
+/* ScoreBoard */
+
+
+
+.scoreboard {
+    background: #0F0F0F;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+.scoreboard__container {
+    padding: 16px;
+}
+.scoreboard__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.scoreboard__row .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: lightgray;
+    font-weight: 700;
+    letter-spacing: 0.095em;
+    margin-bottom: 4px;
+}
+
+.scoreboard__team {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.scoreboard__name {
+    display: block;
+    color: #D2D2D2;
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 8px auto;
+    flex-grow: 1;
+    margin-left: 16px;
+}
+
+.scoreboard__result-home,
+.scoreboard__result-away {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.scoreboard__badge {
+    width: 38px;
+    height: 38px;
+}
+.scoreboard__badge img {
+    height: 100%;
+}
+
+.scoreboard__result-home, 
+.scoreboard__result-away select {
+    width: 60px;
+}
+
