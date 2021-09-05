@@ -149,6 +149,7 @@ tr.current-user {
 .scoreboard__badge {
     width: 38px;
     height: 38px;
+    text-align: center;
 }
 .scoreboard__badge img {
     height: 100%;
