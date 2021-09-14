@@ -13,10 +13,10 @@
     src: local(''), url('../montserrat-v18-latin/montserrat-v18-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
     url('../fonts/montserrat-v18-latin/montserrat-v18-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-* {
+/** {
     font-family: Roboto;
 }
-
+*/
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
@@ -155,8 +155,33 @@ tr.current-user {
     height: 100%;
 }
 
-.scoreboard__result-home, 
+.scoreboard__result-home,
 .scoreboard__result-away select {
     width: 60px;
+    color: #D2D2D2;
 }
 
+.scoreboard__link {
+    color: #D2D2D2;
+    text-decoration: blink;
+}
+.scoreboard__link:hover {
+    color: yellow;
+}
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}

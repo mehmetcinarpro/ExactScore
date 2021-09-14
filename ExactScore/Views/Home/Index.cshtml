@@ -6,100 +6,108 @@
 }
 
 <div class="text-center">
-    <h1>Don't forget!</h1>
-    <table class="table">
-        <tbody>
-            @foreach (var item in Model.MissingPredictions)
-            {
-                <tr>
-                    <td>
+    <h1 class="h3">Don't forget!</h1>
+    @foreach (var item in Model.MissingPredictions)
+    {
+        <div class="scoreboard">
+            <div class="scoreboard__container">
+                <div class="scoreboard__row">
+                    <span class="label">
                         @item.Date.ToString("yyyy-MM-dd HH:mm")
-                    </td>
-                    <td>
-                        @item.HomeTeam.Name - @item.AwayTeam.Name
-                    </td>
-                    <td>
-                        @if (item.Date > DateTime.Now.AddMinutes(5))
-                        {
-                            <a asp-controller="Fixtures" asp-action="Prediction" asp-route-id="@item.FixtureId">Give score</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </span>
+                </div>
+                <div class="scoreboard__teams">
+                    <div class="scoreboard__team">
+                        <div class="scoreboard__badge">
+                            <img src="~/img/logo_@(@item.HomeTeam.ImageName).png" alt="@item.HomeTeam.Name" />
+                        </div>
+                        <span class="scoreboard__name">@item.HomeTeam.Name</span>
+                        <span class="scoreboard__result-home">
+                            @item.HomeGoal
+                        </span>
+                    </div>
+                    <div class="scoreboard__team">
+                        <div class="scoreboard__badge">
+                            <img src="~/img/logo_@(item.AwayTeam.ImageName).png" alt="@item.AwayTeam.Name" />
+                        </div>
+                        <span class="scoreboard__name">@item.AwayTeam.Name</span>
+                        <span class="scoreboard__result-home">
+                            @item.AwayGoal
+                        </span>
+                    </div>
+                </div>
+                @if (item.Date > DateTime.Now.AddMinutes(10))
+                {
+                    <a class="scoreboard__link blink" asp-controller="Fixtures" asp-action="Prediction" asp-route-id="@item.FixtureId">Give score</a>
+                }
+            </div>
+        </div>
+    }
 
-    <h1>Prediction in progress!</h1>
-    <table class="table">
-        <tbody>
-            @foreach (var item in Model.InProgressPredictions)
-            {
-                <tr>
-                    <td>
+    <h1 class="h3 mt-3">Prediction in progress!</h1>
+    @foreach (var item in Model.InProgressPredictions)
+    {
+        <div class="scoreboard">
+            <div class="scoreboard__container">
+                <div class="scoreboard__row">
+                    <span class="label">
                         @item.Date.ToString("yyyy-MM-dd HH:mm")
-                    </td>
-                    <td>
-                        @item.HomeTeam.Name - @item.AwayTeam.Name
-                    </td>
-                    <td>@item.HomeGoal - @item.AwayGoal</td>
-                    <td>
-                        @if (item.Date > DateTime.Now.AddMinutes(5))
-                        {
-                            <a asp-controller="Fixtures" asp-action="Prediction" asp-route-id="@item.FixtureId">Edit score</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </span>
+                </div>
+                <div class="scoreboard__teams">
+                    <div class="scoreboard__team">
+                        <div class="scoreboard__badge">
+                            <img src="~/img/logo_@(@item.HomeTeam.ImageName).png" alt="@item.HomeTeam.Name" />
+                        </div>
+                        <span class="scoreboard__name">@item.HomeTeam.Name</span>
+                        <span class="scoreboard__result-home">
+                            @item.HomeGoal
+                        </span>
+                    </div>
+                    <div class="scoreboard__team">
+                        <div class="scoreboard__badge">
+                            <img src="~/img/logo_@(item.AwayTeam.ImageName).png" alt="@item.AwayTeam.Name" />
+                        </div>
+                        <span class="scoreboard__name">@item.AwayTeam.Name</span>
+                        <span class="scoreboard__result-home">
+                            @item.AwayGoal
+                        </span>
+                    </div>
+                </div>
+                @if (item.Date > DateTime.Now.AddMinutes(10))
+                {
+                    <a class="scoreboard__link" asp-controller="Fixtures" asp-action="Prediction" asp-route-id="@item.FixtureId">Edit score</a>
+                }
+            </div>
+        </div>
+    }
 
 
-    <h1>Standings</h1>
-    <table class="table table-responsive-sm">
+    <h1 class="h3 mt-3">Liderlik koltugu</h1>
+    <img src="~/img/lider05.png" class="img-fluid" alt="lider" />
+
+    <h1 class="h3 mt-3">Puan Durumu</h1>
+    <table class="table">
         <thead>
             <tr>
-                <th>
-                    User
-                </th>
-                <th>
-                    Played
-                </th>
-                <th>
-                    XScore
-                </th>
-                <th>
-                    Win
-                </th>
-                <th>
-                    Lost
-                </th>
-                <th>
-                    Points
-                </th>
+                <th>User</th>
+                <th>P</th>
+                <th>ES</th>
+                <th>W</th>
+                <th>L</th>
+                <th>Pts</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Standings)
             {
                 <tr class=@(SignInManager.IsSignedIn(User) && user?.UserName == item.UserName ? "current-user" : "")>
-                    <td>
-                        @item.UserName
-                    </td>
-                    <td>
-                        @item.Played
-                    </td>
-                    <td>
-                        @item.ExactScore
-                    </td>
-                    <td>
-                        @item.Win
-                    </td>
-                    <td>
-                        @item.Lost
-                    </td>
-                    <td>
-                        @item.Point
-                    </td>
+                    <td>@item.UserName</td>
+                    <td>@item.Played</td>
+                    <td>@item.ExactScore</td>
+                    <td>@item.Win</td>
+                    <td>@item.Lost</td>
+                    <td>@item.Point</td>
                 </tr>
             }
         </tbody>
