@@ -3,7 +3,9 @@ using ExactScore.Data.Repositories;
 using ExactScore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -29,10 +31,19 @@ namespace ExactScore.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var otherUsersIds = _context.Users.Where(u => u.Id != userId).Select(u => u.Id).ToList();
+            var othersPredictions = new List<PredictionViewModel>();
+            foreach (var id in otherUsersIds)
+            {
+                othersPredictions.AddRange(await _predictionRepository.GetInProgressPredictions(id));
+            }
+
             return View(new HomeViewModel
             {
                 MissingPredictions = await _predictionRepository.GetMissingPredictions(userId),
                 InProgressPredictions = await _predictionRepository.GetInProgressPredictions(userId),
+                InProgressOthersPredictions = othersPredictions,
                 Standings = await _standingsRepository.GetStandings()
             });
         }

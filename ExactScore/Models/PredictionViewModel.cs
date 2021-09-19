@@ -11,5 +11,6 @@ namespace ExactScore.Models
         public int? HomeGoal { get; set; }
         public int? AwayGoal { get; set; }
         public DateTime Date { get; set; }
+        public string Username { get; set; }
     }
 }

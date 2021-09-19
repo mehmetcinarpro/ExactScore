@@ -185,3 +185,13 @@ tr.current-user {
         visibility: hidden;
     }
 }
+
+.chip {
+    background: lightgray;
+    color: black;
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+}
