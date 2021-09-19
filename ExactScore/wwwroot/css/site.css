@@ -186,12 +186,15 @@ tr.current-user {
     }
 }
 
-.chip {
-    background: lightgray;
+.scoreboard__chip {
+    font-family: "Montserrat", sans-serif;
+    background: #D2D2D2;
     color: black;
     border-radius: 8px;
     padding-left: 8px;
     padding-right: 8px;
-    font-family: "Montserrat", sans-serif;
+    margin-left: 3px;
+    margin-right: 3px;
     font-size: 14px;
+    display: inline-block;
 }

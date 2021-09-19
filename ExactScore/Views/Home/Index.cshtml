@@ -82,7 +82,7 @@
                 <div class="mt-2">
                     @foreach (var other in Model.InProgressOthersPredictions.Where(p => p.FixtureId == item.FixtureId))
                     {
-                        <span class="chip">@other.Username : @other.HomeGoal-@other.AwayGoal</span>
+                        <div class="scoreboard__chip">@other.Username : @other.HomeGoal-@other.AwayGoal</div>
                     }
                 </div>
             </div>
