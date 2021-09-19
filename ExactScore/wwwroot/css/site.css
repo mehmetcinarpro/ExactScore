@@ -188,7 +188,7 @@ tr.current-user {
 
 .scoreboard__chip {
     font-family: "Montserrat", sans-serif;
-    background: #D2D2D2;
+    background: white;
     color: black;
     border-radius: 8px;
     padding-left: 8px;
