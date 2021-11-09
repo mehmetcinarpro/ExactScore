@@ -8,5 +8,6 @@ namespace ExactScore.Models
         public IEnumerable<PredictionViewModel> MissingPredictions { get; set; }
         public IEnumerable<PredictionViewModel> InProgressPredictions { get; set; }
         public IEnumerable<PredictionViewModel> InProgressOthersPredictions { get; set; }
+        public PlayerOfRoundViewModel PlayerOfRound { get; set; }
     }
 }

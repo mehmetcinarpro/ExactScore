@@ -198,3 +198,18 @@ tr.current-user {
     font-size: 14px;
     display: inline-block;
 }
+
+.haftanin-oyuncusu {
+    list-style: none;
+}
+.haftanin-oyuncusu__green {
+    color: green;
+    font-weight: bold;
+}
+.haftanin-oyuncusu__orange {
+    color: orange;
+    font-weight: bold;
+}
+.haftanin-oyuncusu__red {
+    color: red;
+}

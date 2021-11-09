@@ -47,5 +47,29 @@ namespace ExactScore.Data.Repositories
                 Date = p.Date
             });
         }
+
+        public async Task<PlayerOfRoundViewModel> GetPlayerOfRound()
+        {
+            var lastRound = await _context.Rounds.OrderByDescending(r => r.OrderNumber).FirstAsync(r => r.Closed);
+            var predictions = _context.Predictions.Include(p => p.Fixture).Include(p => p.Fixture.HomeTeam).Include(p => p.Fixture.AwayTeam)
+                .Where(p => p.Fixture.RoundId == lastRound.Id).AsEnumerable().GroupBy(p => p.IdentityUserId).ToDictionary(g => g.Key, g => g.ToList());
+            var bestPlayer = predictions.ToDictionary(g => g.Key, g => g.Value.Sum(m => m.Point)).OrderByDescending(p => p.Value).First();
+            var bestPlayerPredictions = predictions.First(p => p.Key == bestPlayer.Key).Value;
+
+            return new PlayerOfRoundViewModel
+            {
+                Username = bestPlayerPredictions.First().IdentityUser.UserName,
+                Predictions = bestPlayerPredictions.Select(p => new PredictionViewModel
+                {
+                    FixtureId = p.FixtureId,
+                    HomeTeam = p.Fixture.HomeTeam,
+                    AwayTeam = p.Fixture.AwayTeam,
+                    HomeGoal = p.HomeGoal,
+                    AwayGoal = p.AwayGoal,
+                    Date = p.Fixture.Date,
+                    Point = p.Point
+                })
+            };
+        }
     }
 }

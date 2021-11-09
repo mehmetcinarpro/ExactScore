@@ -93,6 +93,25 @@
     <h1 class="h3 mt-3">Liderlik Koltuğu</h1>
     <img src="~/img/lider07.PNG" class="img-fluid" alt="lider" />
 
+    <h1 class="h3 mt-3">Haftanın oyuncusu : @Model.PlayerOfRound.Username</h1>
+    <ul class="haftanin-oyuncusu">
+        @foreach (var item in Model.PlayerOfRound.Predictions)
+        {
+            if (item.Point == 3)
+            {
+                <li class="haftanin-oyuncusu__green">@item.HomeTeam.Name @item.HomeGoal - @item.AwayGoal @item.AwayTeam.Name</li>
+            }
+            else if (item.Point == 1)
+            {
+                <li class="haftanin-oyuncusu__orange">@item.HomeTeam.Name @item.HomeGoal - @item.AwayGoal @item.AwayTeam.Name</li>
+            }
+            else
+            {
+                <li class="haftanin-oyuncusu__red">@item.HomeTeam.Name @item.HomeGoal - @item.AwayGoal @item.AwayTeam.Name</li>
+            }
+        }
+    </ul>
+
     <h1 class="h3 mt-3">Puan Durumu</h1>
     <table class="table">
         <thead>

@@ -44,7 +44,8 @@ namespace ExactScore.Controllers
                 MissingPredictions = await _predictionRepository.GetMissingPredictions(userId),
                 InProgressPredictions = await _predictionRepository.GetInProgressPredictions(userId),
                 InProgressOthersPredictions = othersPredictions,
-                Standings = await _standingsRepository.GetStandings()
+                Standings = await _standingsRepository.GetStandings(),
+                PlayerOfRound = await _predictionRepository.GetPlayerOfRound()
             });
         }
 

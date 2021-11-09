@@ -8,5 +8,6 @@ namespace ExactScore.Data.Repositories
     {
         Task<IEnumerable<PredictionViewModel>> GetMissingPredictions(string userId);
         Task<IEnumerable<PredictionViewModel>> GetInProgressPredictions(string userId);
+        Task<PlayerOfRoundViewModel> GetPlayerOfRound();
     }
 }
